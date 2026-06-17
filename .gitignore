@@ -1,0 +1,11 @@
+# Ignore all executables
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore build directories (where executables often end up)
+bin/
+obj/
+dist/
+out/
