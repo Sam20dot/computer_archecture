@@ -9,3 +9,11 @@ bin/
 obj/
 dist/
 out/
+
+# GCC intermediate files
+*.o
+*.i
+*.s
+
+# Default POSIX/Linux binaries
+a.out
