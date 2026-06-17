@@ -1,19 +1,13 @@
-# Ignore all executables
-*.exe
-*.dll
-*.so
-*.dylib
+# 1. Ignore all files by default in your code subdirectories
+intro_into_c/**/*
+cs:app/**/*
+cod:hi/**/*
 
-# Ignore build directories (where executables often end up)
-bin/
-obj/
-dist/
-out/
+# 2. But DO NOT ignore folders themselves
+!**/
 
-# GCC intermediate files
-*.o
-*.i
-*.s
-
-# Default POSIX/Linux binaries
-a.out
+# 3. Explicitly ALLOW your C source code and notes
+!*.c
+!*.h
+!*.md
+!*.txt
