@@ -1,3 +1,5 @@
+
+
 // this  is the most usefull ways for writing the structure codes 
 #include <stdio.h>
 
@@ -113,6 +115,33 @@ printf ("\n user location infromations :\n user_id :%lu\n latitude:%hi\n longitu
 
 // then infomations of balance 
 printf ("\n the infromation of balance :%lu\n",blc.amount);
+
+
+// then we are going on the other type of the structure to make this works perfectly and well defined for being dispalyed we finished first part of displaying the struct which was 
+// struct struct_name {};
+// second type is this one 
+// struct mystruct {} valiables ;
+struct user_2 {
+
+char name[20];
+char email[20];
+char password[20];
+unsigned long  int user_id;
+
+
+
+}
+// then here we create the user imediatly 
+usr11={.name="sam pray",.email="nizawe@gmail.com",.password="12345",.user_id=22222121212},
+usr12={"sam", "sam@gmail.com","12345",21334323}
+;
+
+printf ("\nthe user has found that when the codes works better i can display them\n ");
+printf ("\nuser name is :%s \n email:%s \n user password:%s\n and user_id is :%lu",usr11.name,usr11.email,usr11.password,usr11.user_id);
+
+
+
+
 
 
 
