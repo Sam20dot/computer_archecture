@@ -4,32 +4,32 @@
 //set balance ;
 void set_balance(char name[20],double money);
 
+// this file contains the dispay of pass by refence to the values where the function 
+// manipulate of chage the actual values 
+
+#include <stdio.h>
 
 
-
-
-	typedef struct  {
-		char name[20];
-		long int balance;
-
-
-
-	}account;
-
+void addBy2 (int* a) ; // this is function prototype 
+			       //
 int main (){
-	char name[20]="sam pray";
-	long int balance =10000000;
-// call the function to set the balance ;
-printf ("\nthe balance before storing money \n");
-printf ("\n balance :%ld\n name :%s\n",balance,name);
+
+int a=8;
+printf ("\nbefore the adding the number was :%d",a);
 
 
-set_balance(name,balance);
-	printf ("\n after the change :\n balance: %ld \n name :%s");
+addBy2(&a); 
+ printf ("\n the values has been changed or added by tw,o :%d ",a);
+
+
+ 
+
+add
 
 }
+// function imprementaion 
 
+void addBy2(int *a) {
+*a=*a+2;
 
-// function definitions 
-void set_balance()
-
+}
