@@ -9,8 +9,18 @@
 
 
 int main () {
+    char name[10] ;
+    printf ("enter your name :");
+    scanf ("%s",name);
 
-    for (int i=0; i<MAX; i++) {
+    int maximum= MAX-10;
+    
+
+
+
+
+
+    for (int i=0; i<maximum; i++) {
         // to draw the holizantal line 
         printf ("_");                                                                                                          
 
@@ -21,20 +31,29 @@ int main () {
     // then the other line which will be vertical to be drwan 
     for (int i=0; i<MAX ; i++) {
         printf ("|");
+        printf ("name is :%s",name);
+               for (int i=0;i<maximum;i++){
 
-        for (int i=0;i<MAX;i++){
 
 
-        printf ("_");
+        printf (" ");
+
 
     }
     printf ("|");
+    
 
     printf ("\n");
     
 
 
 }
+// the line for closing the line at the buttons 
+for (int i=0; i<MAX; i++) {
+printf ("_");
+
+}
+printf ("\n");
 }
 
 
