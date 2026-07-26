@@ -4,6 +4,8 @@
 //#include "key.h"
 #include "char.h"
 #include "cursor.h"
+#include "mouse_button.h"
+
 
 
 
@@ -39,8 +41,11 @@ int main () {
 // char register 
 
    //glfwSetCharCallback(window,char_callback);
-   glfwSetCursorPosCallback(window,cursor_position_callback);
+   //glfwSetCursorPosCallback(window,cursor_position_callback);
+
+   glfwSetMouseButtonCallback(window,mouse_callback);
    
+
 
 
     // then keep window open unless we press any key for terminations 
