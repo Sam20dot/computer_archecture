@@ -1,8 +1,10 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include "errorhandle.h"
-#include "key.h"
+//#include "key.h"
 #include "char.h"
+#include "cursor.h"
+
 
 
 
@@ -32,9 +34,14 @@ int main () {
     glfwMakeContextCurrent (window);
 
     // then we register the key events 
-    glfwSetKeyCallback (window, key_callback);
+
+    //glfwSetKeyCallback (window, key_callback);
 // char register 
-   glfwSetCharCallback(window,char_callback);
+
+   //glfwSetCharCallback(window,char_callback);
+   glfwSetCursorPosCallback(window,cursor_position_callback);
+   
+
 
     // then keep window open unless we press any key for terminations 
     while (!glfwWindowShouldClose(window)) {
