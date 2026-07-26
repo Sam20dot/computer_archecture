@@ -115,3 +115,15 @@ bin/
 .vscode/
 .idea/
 .DS_Store`
+# --- Python Virtual Environments ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Python Cache & Compiled Files ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
