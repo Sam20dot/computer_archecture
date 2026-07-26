@@ -5,6 +5,7 @@
 #include "char.h"
 #include "cursor.h"
 #include "mouse_button.h"
+#include "scollor.h"
 
 
 
@@ -43,8 +44,12 @@ int main () {
    //glfwSetCharCallback(window,char_callback);
    //glfwSetCursorPosCallback(window,cursor_position_callback);
 
-   glfwSetMouseButtonCallback(window,mouse_callback);
+   //glfwSetMouseButtonCallback(window,mouse_callback);
+
+   // scollor 
+   glfwSetScrollCallback(window,scoll_callback);
    
+
 
 
 
