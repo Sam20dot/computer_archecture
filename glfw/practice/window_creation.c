@@ -1,6 +1,10 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include "errorhandle.h"
+#include "key.h"
+#include "char.h"
+
+
 
 
 int main () {
@@ -27,6 +31,11 @@ int main () {
     // then we have all needed let handle this and notify gpu graphic apis to draw 
     glfwMakeContextCurrent (window);
 
+    // then we register the key events 
+    glfwSetKeyCallback (window, key_callback);
+// char register 
+   glfwSetCharCallback(window,char_callback);
+
     // then keep window open unless we press any key for terminations 
     while (!glfwWindowShouldClose(window)) {
         glfwWaitEvents();
@@ -36,7 +45,7 @@ int main () {
     glfwDestroyWindow (window);
     glfwTerminate();
     return 0;
-    
+
 
 
 
