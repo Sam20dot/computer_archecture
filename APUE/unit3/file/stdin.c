@@ -1,0 +1,32 @@
+// we are going to see the position of the offset within this file 
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+
+
+
+int main () {
+
+    // for current offset
+
+    off_t std=lseek (STDIN_FILENO,0,SEEK_CUR);
+    if (std==-1) {
+
+        printf(" we faied to load the values \n");
+
+    }
+    else {
+        printf ("the current offset is :%ld \n", std);
+        
+
+    }
+
+
+//lseek it help us to travel through the file without just scanning it all 
+//and if we make the file intractive we can read the file from the current position 
+// 
+  //  sam@LAPTOP-L8C5S9KQ:~/holday_learning/APUE/unit3/file$ ./sam <lseek.c
+//    the current offset is :0sam@LAPTOP-L8C5S9KQ:~/holday_learning/APUE/unit3/file$
+
+
+}
