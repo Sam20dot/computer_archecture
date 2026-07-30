@@ -9,7 +9,8 @@ int main () {
 
     // for current offset
 
-    off_t std=lseek (STDIN_FILENO,0,SEEK_CUR);
+    // BASED ON THE HEAD OR START 
+    off_t std=lseek (STDIN_FILENO,0,SEEK_SET);
     if (std==-1) {
 
         printf(" we faied to load the values \n");
