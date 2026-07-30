@@ -10,7 +10,10 @@ int main () {
     // for current offset
 
     // BASED ON THE HEAD OR START 
-    off_t std=lseek (STDIN_FILENO,0,SEEK_SET);
+    // on the final of the file or rlated to the ends of the file 
+    // to mean that it will read all files to the ends of the files 
+    // the current offset is :502
+    off_t std=lseek (STDIN_FILENO,0,SEEK_END);
     if (std==-1) {
 
         printf(" we faied to load the values \n");
