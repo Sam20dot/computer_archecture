@@ -1,4 +1,4 @@
-#include <stdio.h>
+#/home/sam/holday_learning/sokol_expertise/window1.cinclude <stdio.h>
 
 
 int main () {
