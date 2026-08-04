@@ -55,16 +55,37 @@ else {
 // then here we  are going to convert the character into the glyph indexs
 // let play with it 
 
-while (1) {
-    int charcode;
+int glyph_index=FT_Get_Char_Index(fontConte.face,64);
+printf ("\n the glyph converted values is :%d char is :%c ",glyph_index,65);
 
-    printf ("\n enter the character code :\n");
-    scanf ("%d",&charcode);
+// then we are going to load the font part into the slot within the memory 
+int error5=FT_Load_Glyph (fontConte.face,glyph_index,FT_LOAD_DEFAULT);
+if (error5==FT_Err_Ok) {
+printf ("\n the values has been moved into a slot which is now we we can go on step of rendering it \n");
 
-int glyph_index=FT_Get_Char_Index(fontConte.face,charcode);
-printf ("\n the glyph converted values is :%d char is :%c ",glyph_index,charcode);
 
 }
+else {
+    printf ("\n failed to load those file into a slot or the container which contains one values \n");
+
+
+}
+
+//then we are going to see the fomrt which has been used to incored it 
+printf ("\n the format used for incording the values is for slot  :%du \n",fontConte.face->glyph->format);
+
+// then now we can do the amazing things for the last time for rendering this images 
+int error6=FT_Render_Glyph (
+        fontConte.face->glyph,
+        FT_RENDER_MODE_NORMAL
+        );
+if (error6==FT_Err_Ok) {
+    printf ("the image has been rendered very well so that i can use it ");
+}
+
+printf ("\n access to the bit map where they are stored before seeing me to put them on screen \n ");
+printf ("\n the let    bitmap %d\n",fontConte.face->glyph->bitmap_left);
+printf ("\n the right  bitmap %d\n",fontConte.face->glyph->bitmap_top);
 
 
 
