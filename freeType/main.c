@@ -52,11 +52,19 @@ else {
 
 
 }
-// then here we  are going to convert the character into the glyph indexs 
-int glyph_index=FT_Get_Char_Index(fontConte.face,65);
-printf ("\n the glyph converted values is :%d",glyph_index);
+// then here we  are going to convert the character into the glyph indexs
+// let play with it 
 
+while (1) {
+    int charcode;
 
+    printf ("\n enter the character code :\n");
+    scanf ("%d",&charcode);
+
+int glyph_index=FT_Get_Char_Index(fontConte.face,charcode);
+printf ("\n the glyph converted values is :%d char is :%c ",glyph_index,charcode);
+
+}
 
 
 
