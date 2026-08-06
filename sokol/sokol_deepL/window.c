@@ -1,158 +1,142 @@
-#define SOKOL_GLCORE
+
 #define SOKOL_IMPL
-
+#define SOKOL_GLCORE
 #include "../libs/sokol/sokol_gfx.h"
-#include "../include/callback.h"
+#include "../libs/sokol/sokol_log.h"
+#include  <stdio.h>
+
 #include <GLFW/glfw3.h>
-#include <stdio.h>
-
-
-// then we can create the all resources all in one structure here abouve 
-// so that we can use to make sure that is easier for us 
-static struct  {
-sg_pipeline pipe;
-
-sg_pass_action pass_action;
-
-
-}states;
-
+#include "../include/callback.h"
+// sokol files 
 
 
 
 int main () {
 
     glfwSetErrorCallback (error_callback);
-    if (!glfwInit ()) {
-
-        printf ("\n the error in printing the error \n");
+    if (!glfwInit()) {
+        printf ("failed ot initilatize");
         return -1;
+
     }
-    // then defining the hinting for allow the configuration of opengl and other for 3.3 version 
-glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR,3);
-glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR,3);
-glfwWindowHint (GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
+    // then we are about to keep going 
+    glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR,3);
+    glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR,3);
+    glfwWindowHint (GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
 
-// then create the window 
+    // window creation 
+    GLFWwindow *window = glfwCreateWindow (1200,800,"sam_repeat",NULL,NULL);
+    // then we check if window has been created 
+    if (!window) {
 
-GLFWwindow *window= glfwCreateWindow (1200,9000, "sam Editor",NULL,NULL);
-glfwMakeContextCurrent (window);
-
-
-// setup and using sokol to render the background color 
-
-sg_setup  (&(sg_desc) {
- 
-        .environment= {
-          .defaults= {
-
-            .color_format=SG_PIXELFORMAT_RGBA8,
-            .depth_format=SG_PIXELFORMAT_DEPTH_STENCIL,
-            .sample_count=1
-          }
-          }
-
-        });
-
-states.pass_action=(sg_pass_action) {
-
-    .colors[0]={
-
-        .load_action=SG_LOADACTION_CLEAR,
-        .clear_value= {0.1f,0.4f,0.1f,0.5f}
+        printf ("\n window has been failed to initlized\n ");
 
 
     }
 
+    // then make the window context 
+    glfwMakeContextCurrent (window);
 
-};
-float vertex_buffer[] ={
-// position of each vertex
-  
-    0.1f,0.1f,0.3f
+    // then setup the sg
+    sg_setup  (& (sg_desc) {
 
-};
+            .environment= {
+            .defaults= {
+             .color_format= SG_PIXELFORMAT_RGBA8,
+             .depth_format= SG_PIXELFORMAT_DEPTH_STENCIL,
+             .sample_count=1
+
+            }}
+
+            });
+    sg_pass_action pass_action = (sg_pass_action) {
+        .colors[0] ={
+            .load_action=SG_LOADACTION_CLEAR,
+            .clear_value= {0.1f,0.3f,0.4f,0.8f}
 
 
-// from the book we are about to learn resource creation or resource type 
-sg_buffer vbuf=sg_make_buffer (&(sg_buffer_desc) {
 
-        .data=SG_RANGE (vertex_buffer),
+        }
+
+    };
+sg_buffer vbuffer= sg_make_buffer (&(sg_buffer_desc) {
+
+        .data=SG_RANGE(vbuffer),
         .usage.vertex_buffer=true,
-        .usage.dynamic_update=true // to mean that we can update this part 
-        
+        .label="points"
 
         });
 
-
-// then we do create the file which can be used for rendering this values 
-sg_update_buffer (vbuf,&SG_RANGE(vertex_buffer));
-sg_shader shd = sg_make_shader(&(sg_shader_desc){
-    // 1. Vertex Shader Source
+    // then we can go to pass thea ction within themain 
+    sg_shader shd = sg_make_shader(&(sg_shader_desc){
     .vertex_func.source = 
         "#version 330 core\n"
         "layout(location = 0) in vec3 position;\n"
         "void main() {\n"
-        "    gl_Position = vec4(position, 1.0);\n"
-        "    gl_PointSize = 10.0;\n" // Sets pixel size of the rendered point
+        "    gl_Position = vec4(position, 0.2);\n"
+        "    gl_PointSize = 100.0;\n"
         "}\n",
-
-    // 2. Fragment Shader Source
     .fragment_func.source = 
         "#version 330 core\n"
         "out vec4 frag_color;\n"
         "void main() {\n"
-        "    frag_color = vec4(1.0, 0.0, 0.0, 1.0);\n" // Solid red color
+        "    frag_color = vec4(1.0, 0.0, 0.0, 1.0);\n"
         "}\n",
-
-    // 3. Define layout so Sokol knows how inputs match pipeline attributes
-   
     .label = "point-shader"
 });
-sg_pipeline pipe= sg_make_pipeline (& (sg_pipe));
+
+// then pipeline to show that and do other configurations 
+sg_pipeline pipe =sg_make_pipeline (&(sg_pipeline_desc) {
+        .shader=shd,
+        .primitive_type=SG_PRIMITIVETYPE_POINTS,
+        .label="points",
+
+        .layout= {
+
+         .attrs[0].format=SG_VERTEXFORMAT_FLOAT3,
+
+        }
+               });
+sg_bindings bind = {
+
+    .vertex_buffers[0]=vbuffer
+
+};
 
 
-while (!glfwWindowShouldClose (window)) {
+    while (!glfwWindowShouldClose (window)) {
+          int height,width;
+                glfwGetWindowSize (window, &width, &height);
+                sg_begin_pass (&(sg_pass) {
+                        .swapchain= {
+                        .color_format=SG_PIXELFORMAT_RGBA8,
+                        .depth_format=SG_PIXELFORMAT_DEPTH_STENCIL,
+                        .width=width,
+                        .height=height,
+                        .sample_count=1,
 
-    // let first get the heigh and widith of the screen 
-    int height,width;
+                        },
+                        .action=pass_action
+                        
+                        
+                        });
 
-    glfwGetWindowSize (window,&width,&height);
-
-
-    sg_begin_pass (&(sg_pass) {
-            .swapchain={
-             .color_format=SG_PIXELFORMAT_RGBA8,
-             .depth_format=SG_PIXELFORMAT_DEPTH_STENCIL,
-             .sample_count=1,
-             .height=height,
-             .width=width
-             
-  },
-
-
-            .action=states.pass_action,
-
-            
-            });
-
-   
-   sg_end_pass ();
-   sg_commit ();
-
-
-    glfwPollEvents ();
-    glfwSwapBuffers(window);
+                sg_apply_pipeline (pipe);
+                sg_apply_bindings (&bind);
+                sg_draw (0,1,1);
+                sg_end_pass ();
+                sg_commit ();
+                glfwSwapBuffers (window);
+                glfwPollEvents ();
 
 
 
-}
-// systems distroy when we finish to ca:ll all functions inside it
+
+
+      
+    }
 sg_shutdown ();
-
 glfwDestroyWindow (window);
-glfwTerminate (); 
-
-
+glfwTerminate ();
 
 }
