@@ -67,6 +67,16 @@ if (loadChar==FT_Err_Ok) {
 
 
 }
+
+int renderChar=FT_Render_Glyph (face->glyph,FT_RENDER_MODE_NORMAL);
+if (renderChar==FT_Err_Ok) {
+
+    printf ("\n now we have rendered the character glyph we can access it or its values like bitmap \n");
+
+
+
+}
+
     
     
 
