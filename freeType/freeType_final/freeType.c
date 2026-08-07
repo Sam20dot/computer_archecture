@@ -31,6 +31,26 @@ int main  () {
     }
     printf  ("\n the number of the glyph which is in this file is :%ld\n",face->num_glyphs);
     printf  ("\n the flags which discribes the values within that file :%#lb\n",face->face_flags);
+    printf  ("\n the units per EM square like the units it covers in : %d \n",face->units_per_EM);
+
+// zero mean that the same size as the width we start with width, height and then we end up with resoultion 
+// which are measured in dot per inch 
+//
+ //   int setCharSize= FT_Set_Char_Size (face,0,16*64,300,300) ;
+  //  if (setCharSize==FT_Err_Ok )  {
+
+  //      printf  ("\n the size has been set ");
+
+  //  }
+
+  /// then we set the resolutions within that part 
+
+  int setPixelSize = FT_Set_Pixel_Sizes (face,0,16);
+  if (setPixelSize==FT_Err_Ok) {
+
+      printf  ("\n we have set the pixel size as 16px and i know they happened \n");
+  }
+
     
     
 
