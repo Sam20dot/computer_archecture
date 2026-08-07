@@ -25,6 +25,15 @@ void char_callback (GLFWwindow *window,unsigned int codeprint ) {
     //  we get that character code and then finds its corresponding values 
     int glyph_index=FT_Get_Char_Index (font.face,codeprint);
     printf ("the character values is :%c and its glyph index is :%d\n",codeprint,glyph_index);
+    if (FT_Load_Glyph(font.face,glyph_index,FT_LOAD_DEFAULT)==FT_Err_Ok) {
+        FT_Render_Glyph (font.face->glyph,FT_RENDER_MODE_NORMAL);
+        
+        FT_GlyphSlot slot=font.face->glyph;
+
+        printf ("the glyph bitmap has been loaded  within the memory !!!\n");
+        printf ("the character is :%c \nthe slot bit map widith:%d \n the slot bit map rows :%d\n",codeprint,slot->bitmap.width,slot->bitmap.rows);
+        
+    }
     fflush (stdout);
 }
 
