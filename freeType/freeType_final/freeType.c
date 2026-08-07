@@ -51,6 +51,13 @@ int main  () {
       printf  ("\n we have set the pixel size as 16px and i know they happened \n");
   }
 
+  // now we are going to get the glyph index of a given valuues on my machine so that they cane be linked in what we call 
+  // character map which is containing the index points to the glyph places in memory 
+  int glyph_index=FT_Get_Char_Index (face,'A');
+
+  printf ("the character A its locations or index is :%d\n",glyph_index);
+
+// then we are going to 
     
     
 
