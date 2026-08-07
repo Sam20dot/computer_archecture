@@ -20,7 +20,7 @@ int main  () {
         printf ("\n new face has been created \n");
 
     }
-    else if (faceInit==FT_Err_Unknown_File_Format) {
+     else if (faceInit==FT_Err_Unknown_File_Format) {
 
         printf ("\n the format found but it is not supported \n");
 
@@ -76,6 +76,7 @@ if (renderChar==FT_Err_Ok) {
 
 
 }
+
 
     
     

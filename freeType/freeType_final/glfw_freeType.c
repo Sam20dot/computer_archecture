@@ -1,3 +1,8 @@
+#define SOKOL_IMPL
+#define SOKOL_GLCORE
+#include "./libs/sokol/sokol_gfx.h"
+#include "./libs/sokol/sokol_log.h"
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <GLFW/glfw3.h>
@@ -59,7 +64,6 @@ int main  () {
     // creating the context of the window 
     glfwMakeContextCurrent (window);
 
-
     // definition of freetype and its declarations 
 
       char *pathname= "/usr/share/fonts/truetype/ubuntu/UbuntuMono-RI.ttf";
@@ -81,16 +85,70 @@ int main  () {
     printf ("\n_____ WELLCOME ON THE COMBINATION OF GLFW AND FREETYPE _____\n");
     printf ("\n the glfw listen to a character code and then freeType tell me its glyph index from memory \n\n");
 
+    // setting up sokol_gfx to help me render my character on the screen 
+    sg_setup(&(sg_desc) {
+            .environment= {
+
+             .defaults= {
+
+               .color_format=SG_PIXELFORMAT_RGBA8,
+               .depth_format=SG_PIXELFORMAT_DEPTH_STENCIL,
+               .sample_count=1,
+
+             }
+            }
+
+
+            });
+    // then we create the actions here and then we will do 
+    sg_pass_action pass_action={
+        .colors[0]={
+            .load_action=SG_LOADACTION_CLEAR,
+            .clear_value={0.1f,0.2f,0.4f,0.3f}
+
+            
+        }
+    };
+
+
     glfwSetCharCallback (window,char_callback);
 
     while (!glfwWindowShouldClose (window)) {
+        // i need the window hiegth
+        int height,width;
+        glfwGetWindowSize (window ,&width,&height);
 
-        glfwWaitEvents ();
+
+        sg_begin_pass (&(sg_pass) {
+                .swapchain={
+                 .color_format=SG_PIXELFORMAT_RGBA8,
+                 .depth_format=SG_PIXELFORMAT_DEPTH_STENCIL,
+                 .width=width,
+                 .height=height,
+                 .sample_count=1
+
+
+                },
+                .action=pass_action
+
+                });
+        sg_end_pass ();
+        sg_commit ();
+
+
+        glfwPollEvents();
+
+        glfwSwapBuffers (window);
+
+
 
 
 
 
     }
+
+    sg_shutdown ();
+
     glfwDestroyWindow (window);
     glfwTerminate ();
 
