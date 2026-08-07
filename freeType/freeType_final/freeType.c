@@ -57,7 +57,16 @@ int main  () {
 
   printf ("the character A its locations or index is :%d\n",glyph_index);
 
-// then we are going to 
+// then we are going to load them within the memory 
+int loadChar= FT_Load_Char (face,glyph_index,FT_LOAD_DEFAULT);
+
+if (loadChar==FT_Err_Ok) {
+
+    printf  ("\n the char glyph has been loaded within the memory slots \n");
+
+
+
+}
     
     
 
