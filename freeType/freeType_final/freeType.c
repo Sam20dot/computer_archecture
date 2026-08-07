@@ -30,6 +30,8 @@ int main  () {
 
     }
     printf  ("\n the number of the glyph which is in this file is :%ld\n",face->num_glyphs);
+    printf  ("\n the flags which discribes the values within that file :%#lb\n",face->face_flags);
+    
     
 
 
