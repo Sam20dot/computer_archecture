@@ -65,7 +65,7 @@ sg_buffer vbuffer= sg_make_buffer (&(sg_buffer_desc) {
         .usage.vertex_buffer=true,
         .label="points"
 
-        });
+         });
 
     // then we can go to pass thea ction within themain 
     sg_shader shd = sg_make_shader(&(sg_shader_desc){
@@ -73,8 +73,8 @@ sg_buffer vbuffer= sg_make_buffer (&(sg_buffer_desc) {
         "#version 330 core\n"
         "layout(location = 0) in vec3 position;\n"
         "void main() {\n"
-        "    gl_Position = vec4(position, 0.2);\n"
-        "    gl_PointSize = 100.0;\n"
+        "    gl_Position = vec4(position, 1.0);\n"
+        "    gl_PointSize = 1000.0;\n"
         "}\n",
     .fragment_func.source = 
         "#version 330 core\n"
