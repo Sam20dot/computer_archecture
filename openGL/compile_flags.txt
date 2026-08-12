@@ -1,2 +1,4 @@
 -I./include
 -std=c++17
+-I/usr/include/glm
+-I/usr/include/freetype2
