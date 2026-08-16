@@ -13,7 +13,23 @@ it is provided by header which is called
 
 ```c #include <stdatomic.h>``` to mean that all data types like 
 ```c _atomic ``` and others is where they found 
-so we will expore more its capability let began within the actual code 
+so we will expore more its capability let began within the actual code
+
+
+
+other things which is amazing is the function which are used within the atomic calculations 
+
+** _atomic_fetch_key (const voltile *obj,M arg) **
+this function has the following behavior 
+|key|operation|computation 
+|----| ----|-----|
+|add | +   |addition|
+|sub | -   |substraction|
+|or  | |   |bitwise exculsive or |
+|xor |     |bitwise exculsive nor|
+|and | &   |bitwise and          |
+
+
 
 ## THANK YOU TO BE WITH ME TILL NOW THE BEGINNING OF THE UNIT 16  IN THE INTIRE BOOK 
 
