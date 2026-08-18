@@ -2,17 +2,38 @@
 
 
 int main () {
+FILE* fp=fopen ("readText.txt","r");
+int ret;
+
+char str[900];
 
 
-    FILE* fp=fopen ("readText.txt","r");
-    char str[900];
+if (fp==NULL) {
 
-    fscanf (fp,"%s",str);
-    printf ("\n the string is :%s\n",str);
+    printf ("\n we failed to open the file \n");
+    return -1;
 
 
-    fclose (fp);
-    return 0;
+}
+// and then for now i want to read by using the loop inside the file 
+while (1) {
+
+    ret=fscanf (fp,"%s",str);
+
+    
+    if (ret==EOF)        break;
+        
+        printf ("%s \n",str);
+    
+
+
+
+
+}
+
+
+return 0;
+
 
     
 

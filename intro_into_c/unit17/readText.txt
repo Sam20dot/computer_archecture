@@ -1,1 +1,3 @@
-helloworld
+hello world and now we are writing the best file ever 
+and i want to put this line and read them using fscanf 
+
