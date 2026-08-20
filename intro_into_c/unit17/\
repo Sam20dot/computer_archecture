@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <time.h>
+
+
+// and now we are about to read that file 
+int main  () {
+
+     char message[6777];
+     int count;
+
+
+
+    FILE * fp=fopen("benchmark.txt","r+");
+    FILE *fp1=fopen ("readed.txt","w+");
+
+    // THEN READ IT 
+    while(fscanf (fp,"%s",message)!= EOF) {
+        printf ("we count:%d\n",count);
+
+         count++;
+
+   }
+    // and then we write this message back in other file called read message space by space 
+    fprintf (fp1,"%s",message);
+printf ("\n the message has been written here \n");
+// then we close the file 
+fclose (fp);
+fclose (fp1);
+
+return 0;
+
+
+
+
+
+}
