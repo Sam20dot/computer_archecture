@@ -25,7 +25,7 @@ typedef struct {
     int       height;
     int        width;
     int   top_offset;
-    int left_offset;
+    int  left_offset;
 
 
 
