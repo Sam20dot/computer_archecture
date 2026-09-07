@@ -48,7 +48,7 @@ char * filepath="/usr/share/fonts/truetype/ubuntu/Ubuntu-C.ttf";
    hb_buffer_t *hb_buffer=hb_buffer_create();
 
    // then we add the utf 
-   hb_buffer_add_utf8 (hb_buffer,"hello world we want someone",-1,0,-1);
+   hb_buffer_add_utf8 (hb_buffer,"hello",-1,0,-1);
    hb_buffer_set_direction (hb_buffer,HB_DIRECTION_LTR);
    hb_buffer_set_script (hb_buffer, HB_SCRIPT_LATIN);
    hb_buffer_set_language (hb_buffer,hb_language_from_string ("en",-1));
@@ -82,9 +82,8 @@ char * filepath="/usr/share/fonts/truetype/ubuntu/Ubuntu-C.ttf";
      printf ("\n the x offset  :%d\n",glyph_pos[i].x_offset);
      printf ("\n the y offset  :%d\n",glyph_pos[i].y_offset);
  
-     pen_x= pen_x+glyph_pos[i].x_advance/64.0;
+   
 
-     printf ("\n the holizontol pen position is :%f",pen_x);
     if (FT_Load_Glyph (font.face,glyph_id,FT_LOAD_DEFAULT)==FT_Err_Ok) {
 
         printf (" \n the character loaded");
@@ -102,6 +101,14 @@ char * filepath="/usr/share/fonts/truetype/ubuntu/Ubuntu-C.ttf";
         printf ("\n failed to load a glyph");
 
     }
+
+     FT_Bitmap bitmap = font.face->glyph->bitmap;
+    printf("  \nBitmap dimensions: %d x %d pixels\n", bitmap.width, bitmap.rows);
+    printf("   \nTop offset: %d px, Left offset: %d px\n", font.face->glyph->bitmap_top, font.face->glyph->bitmap_left);
+
+
+  pen_x= pen_x+glyph_pos[i].x_advance/64.0;
+  printf ("\n the holizontol pen position is :%f",pen_x);
 
 
 
