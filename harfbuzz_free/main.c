@@ -85,7 +85,23 @@ char * filepath="/usr/share/fonts/truetype/ubuntu/Ubuntu-C.ttf";
      pen_x= pen_x+glyph_pos[i].x_advance/64.0;
 
      printf ("\n the holizontol pen position is :%f",pen_x);
-     
+    if (FT_Load_Glyph (font.face,glyph_id,FT_LOAD_DEFAULT)==FT_Err_Ok) {
+
+        printf (" \n the character loaded");
+    
+
+    }
+    if (FT_Render_Glyph (font.face->glyph,FT_RENDER_MODE_NORMAL)==FT_Err_Ok) {
+
+        printf ("\n the character has been rendered well we can inspect its bit map behavior \n");
+    
+
+    }
+    else {
+
+        printf ("\n failed to load a glyph");
+
+    }
 
 
 
