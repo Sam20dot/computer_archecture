@@ -47,10 +47,10 @@ int get_glyph_info (glyph_infos * glyph_info,hb_rsrs *hb_rs,Font*font) {
 
     }
     FT_Bitmap bitmap=font->face->glyph->bitmap;
-    bitmap.rows                  =glyph_info->height;
-    bitmap.width                 =glyph_info->width;
-    font->face->glyph->bitmap_top =glyph_info->left_offset;
-    font->face->glyph->bitmap_top=glyph_info->top_offset;
+   glyph_info[i].height= bitmap.rows;
+   glyph_info[i].width  =  bitmap.width;
+   glyph_info[i].left_offset=font->face->glyph->bitmap_left;
+   glyph_info[i].top_offset =font->face->glyph->bitmap_top;
 
      printf ("\n the glp data position infos \n");
      printf ("\n the glyph id is :%u\n",glyph_info[i].glyphId);
@@ -60,6 +60,9 @@ int get_glyph_info (glyph_infos * glyph_info,hb_rsrs *hb_rs,Font*font) {
      printf ("\n the y advance :%f\n",glyph_info[i].y_advance);
      printf ("\n the x offset  :%d\n",glyph_info[i].x_offset);
      printf ("\n the y offset  :%d\n",glyph_info[i].y_offset);
+     printf(" \n Bitmap dimensions: %d x %d pixels\n",glyph_info[i].width, glyph_info[i].height);
+     printf(" \nTop offset: %d px, Left offset: %d px\n",glyph_info[i].top_offset,glyph_info[i].left_offset);
+
  
 
 
