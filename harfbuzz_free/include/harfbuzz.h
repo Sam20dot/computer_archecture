@@ -52,7 +52,7 @@ typedef struct {
 // then create the atlas
 typedef struct {
 
-    unsigned char *pixels [ATLAS_HEIGHT*ATLAS_WITDH];
+    unsigned char pixels [ATLAS_HEIGHT*ATLAS_WITDH];
     int cursor_x;
     int cursor_y;
     int row_max_height;

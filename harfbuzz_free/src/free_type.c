@@ -18,7 +18,7 @@
 
      }
      // 
-     int pixel_sizes=FT_Set_Pixel_Sizes (font->face,0,16);
+     int pixel_sizes=FT_Set_Pixel_Sizes (font->face,0,pixel_size);
      if (pixel_sizes==FT_Err_Ok) {
 
          printf ("\n the pixel size is :%d\n",pixel_size);
