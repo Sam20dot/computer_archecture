@@ -150,7 +150,7 @@ sg_pass_action background_color () {
         .colors[0]= {
 
             .load_action=SG_LOADACTION_CLEAR,
-            .clear_value={ 0.11f, 0.12f, 0.13f, 1.0f } 
+            .clear_value={  0.07f, 0.09f, 0.13f, 1.0f  } 
             
         }
     };

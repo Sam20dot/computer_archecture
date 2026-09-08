@@ -2,6 +2,8 @@
 #include "./include/sokol_gfx.h"
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+#include <string.h>
+
 
 // First create the global subsystem objects 
 Font font;
@@ -17,7 +19,10 @@ int main () {
     // 1. Initialize GLFW Core Windowing Subsystems
     initilize_glfw();
 
-    char* pathname = "/usr/share/fonts/truetype/ubuntu/Ubuntu-C.ttf";
+    char* pathname = "/usr/share/fonts/truetype/ubuntu/UbuntuSansMono[wght].ttf";
+    char * disp_text=" first version of PLab editor -> v0.1,sam's design ";
+    ssize_t lengs=strlen(disp_text);
+
 
     // 2. Initialize font library context structures
     free_type_init(&font, pathname, 64);
@@ -35,7 +40,7 @@ int main () {
 
     // 3. Shape the text line using your HarfBuzz backend layout engine
     create_resources(&font, &hb_rs);
-    create_shaping(&hb_rs, "we are here ", &font);
+    create_shaping(&hb_rs, disp_text, &font);
     
     // FIX A: Capture the EXACT number of active characters populated by HarfBuzz (returns 12)
      get_glyph_info(glyph_info, &hb_rs, &font);
@@ -45,7 +50,7 @@ int main () {
     printf("\n atlas initialized !!\n");
 
     // FIX B: Restrict the loop bounds to total_shaped_chars to keep memory lookups safe!
-    for (int i = 0; i < 12; i++) { 
+    for (int i = 0; i < lengs; i++) { 
         atlasTextureRegion* atlas_cache = atlas_get_or_pack(&atlas, &font, glyph_info[i].glyphId);
 
         if (atlas_cache != NULL) {
@@ -56,7 +61,7 @@ int main () {
     }
 
     // FIX C: Pass the true character length to compute layout boundaries warning-free
-    int total_quard_corner = build_line_triangles(glyph_info,12, &atlas, outquard, &font);
+    int total_quard_corner = build_line_triangles(glyph_info,lengs, &atlas, outquard, &font);
 
     // FIX D: Size your GPU vertex buffer capacity matching the exact number of populated corners!
     sg_buffer vbuf = create_vertex_buffer(outquard, total_quard_corner);
